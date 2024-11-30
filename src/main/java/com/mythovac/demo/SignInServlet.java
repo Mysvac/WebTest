@@ -4,6 +4,7 @@ import com.mythovac.demo.service.AppService;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -36,6 +37,7 @@ public class SignInServlet extends HttpServlet {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        String rememberMe = request.getParameter("rememberMe");
         // 非法输入，返回
         if(username == null || password == null || username.isEmpty() || password.isEmpty()){
             response.sendRedirect("sign-in");
@@ -44,6 +46,18 @@ public class SignInServlet extends HttpServlet {
         try {
             // 验证密码-创建账号
             if(appService.login(username,password)){
+
+                // 保持账号信息（记住我选项）
+                if ("on".equals(rememberMe)) {
+                    // 将用户名和密码保存到 Cookie（存储一周）
+                    Cookie usernameCookie = new Cookie("username", username);
+                    Cookie passwordCookie = new Cookie("password", password);
+                    usernameCookie.setMaxAge(7 * 24 * 60 * 60); // 保存一周
+                    passwordCookie.setMaxAge(7 * 24 * 60 * 60); // 保存一周
+                    response.addCookie(usernameCookie);
+                    response.addCookie(passwordCookie);
+                }
+
                 // session登记
                 request.getSession().setAttribute("username", username);
                 response.sendRedirect("main-page");

@@ -4,13 +4,15 @@
 <html>
 <head>
     <title>留言板</title>
+    <link href="./resources/css/home.css" rel="stylesheet">
 </head>
 <body>
 <h1>留言板</h1>
+<hr>
 <div class="board">
     <jc:forEach var="msg" items="${messageList}">
         <div class="singleMessage">
-            标题：<a href="single-page/id=${msg.id}">${msg.title}</a>
+            <a href="single-page?id=${msg.id}" target="_blank">${msg.title}</a>
             | 发送时间：${msg.time} - 发送用户：${msg.username}
         </div>
     </jc:forEach>
@@ -38,6 +40,7 @@
         })
             .then(response => {
                 alert("已提交")
+                window.location.reload();
             })  // 假设服务器返回 JSON 响应
 
     });

@@ -1,0 +1,110 @@
+/* 全局样式 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+}
+
+hr {
+    border: 0;
+    border-top: 2px solid #ccc;
+    margin: 20px 0;
+}
+
+/* 留言板容器 */
+.board {
+    width: 80%;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.singleMessage {
+    padding: 10px;
+    background-color: #fafafa;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+}
+
+.singleMessage a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.singleMessage a:hover {
+    text-decoration: underline;
+}
+
+.singleMessage:last-child {
+    border-bottom: none;
+}
+
+/* 提交表单样式 */
+.submit {
+    width: 50%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.submit form {
+    display: flex;
+    flex-direction: column;
+}
+
+.submit label {
+    font-weight: bold;
+    margin: 10px 0 5px;
+}
+
+.submit input[type="text"] {
+    padding: 8px;
+    font-size: 14px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit button:hover {
+    background-color: #0056b3;
+}
+
+pre {
+    font-size: 16px;
+    font-family: "Microsoft Sans Serif";
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .board {
+        width: 90%;
+    }
+
+    .submit {
+        width: 80%;
+    }
+
+    .submit button {
+        font-size: 14px;
+        padding: 8px;
+    }
+}

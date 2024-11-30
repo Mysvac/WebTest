@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 
 /**
- * 基础的Dao接口
+ * 基础的Dao接口 提供数据库连接
  * */
 public interface Dao {
     /**

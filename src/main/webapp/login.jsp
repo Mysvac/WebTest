@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>登入</title>
-    <link href="${pageContext.request.contextPath}/resources/css/login.css" rel="stylesheet">
+    <link href="./resources/css/login.css" rel="stylesheet">
 </head>
 <body>
   <div class="login-container">
@@ -18,7 +18,10 @@
         <label for="password">密码：</label>
         <input type="password" id="password" name="password" required>
       </div>
-
+      <div>
+      <label for="rememberMe">记住我</label>
+      <input type="checkbox" id="rememberMe" name="rememberMe">
+      </div>
       <div class="register-info">
         <p>登入自动注册</p>
       </div>
