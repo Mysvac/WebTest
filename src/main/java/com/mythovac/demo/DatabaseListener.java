@@ -77,5 +77,6 @@ public class DatabaseListener implements ServletContextListener {
         } catch (Exception e) {
             System.out.println("error : drop table："+e);
         }
+
     }
 }

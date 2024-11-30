@@ -40,11 +40,9 @@ public class SinglePageServlet extends HttpServlet {
                  request.setAttribute("msg", msg);
                  RequestDispatcher rd = request.getRequestDispatcher("single.jsp");
                  rd.forward(request, response);
-                 return;
              }
              else{
                  response.sendRedirect("main-page");
-                 return;
              }
         } catch (Exception e) {
             System.out.println("single-page findById error");
