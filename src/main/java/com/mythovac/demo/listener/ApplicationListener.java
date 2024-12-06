@@ -7,6 +7,8 @@ import jakarta.servlet.annotation.WebListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.util.Set;
+import java.util.TreeSet;
 
 
 /**
@@ -14,10 +16,12 @@ import java.sql.Statement;
  * 在程序结束时删除
  * */
 @WebListener
-public class DatabaseListener implements ServletContextListener {
+public class ApplicationListener implements ServletContextListener {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/db_base?useSSL=false&serverTimezone=UTC";
     private static final String DB_USER = "baseAdmin";
     private static final String DB_PASSWORD = "baseAdminPwd";
+
+    private static Set<String> usernameSet = new TreeSet<String>();
 
     /**
      * 程序启动时
@@ -25,6 +29,9 @@ public class DatabaseListener implements ServletContextListener {
      * */
     @Override
     public void contextInitialized(ServletContextEvent sce) {
+
+        sce.getServletContext().setAttribute("usernameSet", usernameSet);
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {

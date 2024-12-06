@@ -26,11 +26,6 @@ public class MainPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-//        HttpSession session = request.getSession(false);
-//        if(session == null || session.getAttribute("username") == null) {
-//            response.sendRedirect("sign-in");
-//            return;
-//        }
         RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/home.jsp");
         try {
             request.setAttribute("messageList", appService.lookAllMessages());
@@ -55,8 +50,8 @@ public class MainPageServlet extends HttpServlet {
             return;
         }
         String username = (String) session.getAttribute("username");
-        String title = request.getParameter("title");
-        String content = request.getParameter("content");
+        String title = (String) request.getAttribute("title");
+        String content = (String) request.getAttribute("content");
         if(title == null || title.isEmpty() || content == null || content.isEmpty()) {
             return;
         }

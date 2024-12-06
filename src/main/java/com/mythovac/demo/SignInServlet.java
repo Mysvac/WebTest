@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.Set;
 
 /**
  * 登入控制Servlet
@@ -38,9 +39,13 @@ public class SignInServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("doPost 111111");
 
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        String username = (String)request.getAttribute("username");
+        String password = (String)request.getAttribute("password");
         String rememberMe = request.getParameter("rememberMe");
+        System.out.println("username = " + username);
+        System.out.println("password = " + password);
+
+
         // 非法输入，返回
         if(username == null || password == null || username.isEmpty() || password.isEmpty()){
             response.sendRedirect("sign-in");
@@ -48,8 +53,8 @@ public class SignInServlet extends HttpServlet {
         }
         try {
             // 解密
-            username = xorEncryptDecrypt(username,10086);
-            password = xorEncryptDecrypt(password,10086);
+//            username = xorEncryptDecrypt(username,10086);
+//            password = xorEncryptDecrypt(password,10086);
 
 
             // 验证密码-创建账号
@@ -68,6 +73,9 @@ public class SignInServlet extends HttpServlet {
 
                 // session登记
                 request.getSession().setAttribute("username", username);
+
+                ((Set<String>)(getServletContext().getAttribute("usernameSet"))).add(username);
+
                 response.sendRedirect("main-page");
                 return;
             }
@@ -80,6 +88,9 @@ public class SignInServlet extends HttpServlet {
         }
     }
 
+    /**
+     * 用户名和密码解密
+     * */
     public static String xorEncryptDecrypt(String str, int key) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < str.length(); i++) {

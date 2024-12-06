@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jc" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,7 @@
     <link href="resources/css/home.css" rel="stylesheet">
 </head>
 <body>
-<h1>留言板</h1>
+<h1><a href="main-page">留言板</a></h1>
 <jc:if test="${!empty username}">
     <div class="login-div">你好：${username} <a class="login-a" href="sign-in"><button class="login-bt">注销</button></a></div>
 </jc:if>
@@ -19,7 +20,13 @@
     <jc:forEach var="msg" items="${messageList}">
         <div class="singleMessage">
             <a href="single-page?id=${msg.id}" target="_blank">${msg.title}</a>
-            | 发送时间：${msg.time} - 发送用户：${msg.username}
+            | 发送时间：${msg.time} | 发送用户：${msg.username} -
+            <jc:if test="${fn:contains(usernameSet, msg.username)}">
+                在线
+            </jc:if>
+            <jc:if test="${!fn:contains(usernameSet, msg.username)}">
+                离线
+            </jc:if>
         </div>
     </jc:forEach>
 </div>

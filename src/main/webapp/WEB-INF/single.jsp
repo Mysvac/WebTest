@@ -7,7 +7,7 @@
     <link href="resources/css/home.css" rel="stylesheet">
 </head>
 <body>
-<h1>留言板</h1>
+<h1><a href="main-page">留言板</a></h1>
 <jc:if test="${!empty username}">
     <div class="login-div">你好：${username} <a class="login-a" href="sign-in"><button class="login-bt">注销</button></a></div>
 </jc:if>
