@@ -3,7 +3,7 @@
     <Resource name="jdbc/MyLocalDS"
               type="javax.sql.DataSource"
               driverClassName="com.mysql.cj.jdbc.Driver"
-              url="jdbc:mysql://localhost:3306/db_base?useSSL=false"
+              url="jdbc:mysql://localhost:3306/db_base"
               username="baseAdmin"
               password="baseAdminPwd"
               maxTotal="5"
