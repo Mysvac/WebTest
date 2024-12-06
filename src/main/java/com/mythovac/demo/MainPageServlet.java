@@ -31,7 +31,7 @@ public class MainPageServlet extends HttpServlet {
             response.sendRedirect("sign-in");
             return;
         }
-        RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/home.jsp");
         try {
             request.setAttribute("messageList", appService.lookAllMessages());
             for(Message msg : appService.lookAllMessages()){

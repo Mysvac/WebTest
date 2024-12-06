@@ -24,7 +24,7 @@ public class SignInServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 先无效化session，在转发到登入界面
         request.getSession().invalidate();
-        RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/login.jsp");
         dispatcher.forward(request, response);
     }
 

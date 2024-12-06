@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>登入</title>
-    <link href="./resources/css/login.css" rel="stylesheet">
+    <link href="resources/css/login.css" rel="stylesheet">
 </head>
 <body>
 

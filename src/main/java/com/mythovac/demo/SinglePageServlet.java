@@ -38,7 +38,7 @@ public class SinglePageServlet extends HttpServlet {
              Message msg = appService.lookMessage(id);
              if(msg != null) {
                  request.setAttribute("msg", msg);
-                 RequestDispatcher rd = request.getRequestDispatcher("single.jsp");
+                 RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/single.jsp");
                  rd.forward(request, response);
              }
              else{

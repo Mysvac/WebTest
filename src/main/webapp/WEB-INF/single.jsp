@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>留言板</title>
-    <link href="./resources/css/home.css" rel="stylesheet">
+    <link href="resources/css/home.css" rel="stylesheet">
 </head>
 <body>
 <h1>留言板</h1>
