@@ -8,6 +8,12 @@
 </head>
 <body>
 <h1>留言板</h1>
+<jc:if test="${!empty username}">
+    <div class="login-div">你好：${username} <a class="login-a" href="sign-in"><button class="login-bt">注销</button></a></div>
+</jc:if>
+<jc:if test="${empty username}">
+    <div class="login-div"><a class="login-a" href="sign-in"><button class="login-bt">登入</button></a></div>
+</jc:if>
 <hr>
 <div class="board">
     <jc:forEach var="msg" items="${messageList}">
@@ -18,32 +24,37 @@
     </jc:forEach>
 </div>
 <hr>
-<div class="submit">
-    <form>
-        <label for="title">标题</label><input type="text" id="title" name="title">
-        <label for="content">内容</label><input type="text" id="content" name="content">
-        <button id="submit">提交</button>
-    </form>
-</div>
-<script>
-    document.getElementById("submit").addEventListener("click",(event)=>{
-        event.preventDefault(); // 防止表单刷新页面
-        const title = document.getElementById('title').value;
-        const content = document.getElementById('content').value;
-        const formData = new FormData();
-        formData.append("title", title);
-        formData.append("content", content);
+<jc:if test="${!empty username}">
+    <div class="submit">
+        <form>
+            <label for="title">标题</label><input type="text" id="title" name="title">
+            <label for="content">内容</label><input type="text" id="content" name="content">
+            <button id="submit">提交</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById("submit").addEventListener("click",(event)=>{
+            event.preventDefault(); // 防止表单刷新页面
+            const title = document.getElementById('title').value;
+            const content = document.getElementById('content').value;
+            const formData = new FormData();
+            formData.append("title", title);
+            formData.append("content", content);
 
-        fetch('main-page', {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => {
-                alert("已提交")
-                window.location.reload();
-            })  // 假设服务器返回 JSON 响应
 
-    });
-</script>
+
+            fetch('main-page', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => {
+                    alert("已提交")
+                    window.location.reload();
+                })  // 假设服务器返回 JSON 响应
+
+        });
+    </script>
+
+</jc:if>
 </body>
 </html>

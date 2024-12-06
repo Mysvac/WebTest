@@ -25,12 +25,12 @@ public class MainPageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // 未登入者跳转到登入界面
-        HttpSession session = request.getSession(false);
-        if(session == null || session.getAttribute("username") == null) {
-            response.sendRedirect("sign-in");
-            return;
-        }
+
+//        HttpSession session = request.getSession(false);
+//        if(session == null || session.getAttribute("username") == null) {
+//            response.sendRedirect("sign-in");
+//            return;
+//        }
         RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/home.jsp");
         try {
             request.setAttribute("messageList", appService.lookAllMessages());

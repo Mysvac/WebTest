@@ -3,6 +3,7 @@ package com.mythovac.demo;
 import com.mythovac.demo.service.AppService;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
@@ -14,6 +15,7 @@ import java.io.IOException;
 /**
  * 登入控制Servlet
  * */
+@MultipartConfig
 @WebServlet(name = "signInServlet", value = "/sign-in")
 public class SignInServlet extends HttpServlet {
     AppService appService = new AppService();
@@ -34,6 +36,7 @@ public class SignInServlet extends HttpServlet {
      * */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("doPost 111111");
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -44,6 +47,11 @@ public class SignInServlet extends HttpServlet {
             return;
         }
         try {
+            // 解密
+            username = xorEncryptDecrypt(username,10086);
+            password = xorEncryptDecrypt(password,10086);
+
+
             // 验证密码-创建账号
             if(appService.login(username,password)){
 
@@ -70,5 +78,14 @@ public class SignInServlet extends HttpServlet {
             System.out.println("error in SignInServlet Post");
             response.sendRedirect("sign-in");
         }
+    }
+
+    public static String xorEncryptDecrypt(String str, int key) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < str.length(); i++) {
+            // XOR 运算
+            result.append((char)(str.charAt(i) ^ key));
+        }
+        return result.toString();
     }
 }

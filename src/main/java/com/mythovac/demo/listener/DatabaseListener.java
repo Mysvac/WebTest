@@ -1,4 +1,4 @@
-package com.mythovac.demo;
+package com.mythovac.demo.listener;
 
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;

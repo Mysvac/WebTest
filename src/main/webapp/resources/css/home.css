@@ -12,6 +12,38 @@ h1 {
     color: #333;
 }
 
+/* 为父容器设置flex布局 */
+.login-div {
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center;     /* 垂直居中 */
+    background: #fff;
+    padding: 20px;
+    margin-left: 20%;
+    margin-right: 20%;
+
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 为按钮设置外观 */
+.login-bt {
+    width: 60px;
+    padding: 10px 12px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.login-bt:hover{
+    background-color: #0056b3;
+}
+
 hr {
     border: 0;
     border-top: 2px solid #ccc;
