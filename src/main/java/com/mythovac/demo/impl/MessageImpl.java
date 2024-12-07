@@ -77,7 +77,7 @@ public class MessageImpl implements MessageDao {
      * */
     @Override
     public ArrayList<Message> findAll() throws DaoException {
-        String sql = "select * from message";
+        String sql = "select * from message  ORDER BY time DESC";
         ArrayList<Message> messageList = new ArrayList<>();
         try(Connection conn = getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);

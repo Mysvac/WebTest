@@ -53,6 +53,8 @@ hr {
 /* 留言板容器 */
 .board {
     width: 80%;
+    max-height: 40%;
+    overflow-y: auto;
     margin: 20px auto;
     padding: 15px;
     background-color: #fff;
