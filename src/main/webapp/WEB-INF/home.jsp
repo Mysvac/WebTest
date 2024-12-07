@@ -13,7 +13,7 @@
     <div class="login-div">你好：${username} <a class="login-a" href="sign-in"><button class="login-bt">注销</button></a></div>
 </jc:if>
 <jc:if test="${empty username}">
-    <div class="login-div"><a class="login-a" href="sign-in"><button class="login-bt">登入</button></a></div>
+    <div class="login-div"><a class="login-a" href="sign-in"><button class="login-bt">登录</button></a></div>
 </jc:if>
 <hr>
 <div class="board">

@@ -11,6 +11,9 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+/**
+ * 数据解密器
+ * */
 @WebFilter(filterName = "secureFilter", urlPatterns = { "/*" })
 public class SecureFilter extends HttpFilter {
 

@@ -17,6 +17,9 @@ import java.util.TreeSet;
  * */
 @WebListener
 public class ApplicationListener implements ServletContextListener {
+    // 这里只是创建和删除数据表时用的连接
+    // 其他操作，如实现Dao的方法的数据库操作，使用数据源的形式
+    // 定义在 webapp/META-INF/context.xml 中
     private static final String DB_URL = "jdbc:mysql://localhost:3306/db_base?useSSL=false&serverTimezone=UTC";
     private static final String DB_USER = "baseAdmin";
     private static final String DB_PASSWORD = "baseAdminPwd";

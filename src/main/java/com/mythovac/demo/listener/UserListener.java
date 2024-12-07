@@ -7,6 +7,9 @@ import jakarta.servlet.http.HttpSessionListener;
 
 import java.util.Set;
 
+/**
+ * 在线用户监听器
+ * */
 @WebListener
 public class UserListener implements HttpSessionListener {
 
