@@ -27,6 +27,22 @@ public class SignInServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 先无效化session，在转发到登入界面
         request.getSession().invalidate();
+
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                // 获取 Cookie 的名称和值
+                String name = cookie.getName();
+                String value = cookie.getValue();
+                if(name.equals("password")){
+                    request.setAttribute("password",value);
+                }
+                if(name.equals("username")){
+                    request.setAttribute("username",value);
+                }
+            }
+        }
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/login.jsp");
         dispatcher.forward(request, response);
     }
@@ -59,6 +75,8 @@ public class SignInServlet extends HttpServlet {
 
             // 验证密码-创建账号
             if(appService.login(username,password)){
+
+                System.out.println(" "+ rememberMe);
 
                 // 保持账号信息（记住我选项）
                 if ("on".equals(rememberMe)) {

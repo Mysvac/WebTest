@@ -35,7 +35,8 @@
     <div class="submit">
         <form>
             <label for="title">标题</label><input type="text" id="title" name="title">
-            <label for="content">内容</label><input type="text" id="content" name="content">
+            <label for="content">内容</label>
+            <textarea id="content" name="content" placeholder="请输入内容"></textarea>
             <button id="submit">提交</button>
         </form>
     </div>

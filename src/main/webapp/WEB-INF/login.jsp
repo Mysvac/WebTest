@@ -14,12 +14,12 @@
 
       <div class="input-group">
         <label for="username">用户：</label>
-        <input type="text" id="username" name="username" required>
+        <input type="text" id="username" name="username" value="${username == null ? '' : username}" required>
       </div>
 
       <div class="input-group">
         <label for="password">密码：</label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="password" name="password" value="${password == null ? '' : password}" required>
       </div>
       <div>
       <label for="rememberMe">记住我</label>
@@ -50,6 +50,7 @@
     event.preventDefault(); // 防止表单刷新页面
     let username = document.getElementById('username').value;
     let password = document.getElementById('password').value;
+    let rememberMe = document.getElementById('rememberMe').value;
 
     username = encrypt(username,10086)
     password = encrypt(password,10086)
@@ -57,6 +58,7 @@
     const formData = new FormData();
     formData.append("username", username);
     formData.append("password", password);
+    formData.append("rememberMe",rememberMe)
 
 
 
