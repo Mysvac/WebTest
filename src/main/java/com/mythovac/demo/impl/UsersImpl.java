@@ -8,7 +8,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 实现方法 用户表
@@ -20,18 +23,9 @@ public class UsersImpl implements UsersDao {
     @Override
     public boolean insert(Users users) throws DaoException {
         String sql = "insert into users (username, password) values(?,?)";
-        try(Connection conn = getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql)
-        ) {
-            ps.setString(1, users.getUsername());
-            ps.setString(2, users.getPassword());
-            ps.executeUpdate();
-            return true;
-        }
-        catch(SQLException e){
-            e.printStackTrace();
-            return false;
-        }
+        update(sql,users.getUsername(),users.getPassword());
+
+        return true;
     }
     /**
      * 查询指定用户
@@ -39,25 +33,18 @@ public class UsersImpl implements UsersDao {
     @Override
     public Users findByUsername(String username) throws DaoException {
         String sql = "SELECT * FROM users WHERE username = ?";
-        Users users = new Users();
-        try(Connection conn = getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql)
-        ) {
-            ps.setString(1, username);
-            try(ResultSet rs = ps.executeQuery()){
-                if(rs.next()){
-                    users.setId(rs.getInt("id"));
-                    users.setUsername(rs.getString("username"));
-                    users.setPassword(rs.getString("password"));
-                    return users;
-                }
-                return null;
+        Users users = null;
+
+        List<Map<Integer, Object>> rs = query(sql,username);
+        if(!rs.isEmpty()){
+            users = new Users();
+            for(Map<Integer, Object> m : rs){
+                users.setId((int) m.get(1));
+                users.setUsername((String) m.get(2));
+                users.setPassword((String) m.get(3));
             }
         }
-        catch(SQLException e){
-            e.printStackTrace();
-            return null;
-        }
+        return users;
     }
     /**
      * 查询全部用户
@@ -67,20 +54,15 @@ public class UsersImpl implements UsersDao {
         String sql = "SELECT * FROM users";
         ArrayList<Users> usersList = new ArrayList<>();
 
-        try(Connection conn = getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery()){
-            while(rs.next()){
+        List<Map<Integer, Object>> rs = query(sql);
+        if(!rs.isEmpty()){
+            for(Map<Integer, Object> m : rs){
                 Users users = new Users();
-                users.setId(rs.getInt("id"));
-                users.setUsername(rs.getString("username"));
-                users.setPassword(rs.getString("password"));
+                users.setId((int) m.get(1));
+                users.setUsername((String) m.get(2));
+                users.setPassword((String) m.get(3));
                 usersList.add(users);
             }
-        }
-        catch(SQLException e){
-            e.printStackTrace();
-            return new ArrayList<Users>();
         }
         return usersList;
     }

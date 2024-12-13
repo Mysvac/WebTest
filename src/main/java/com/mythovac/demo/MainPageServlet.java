@@ -33,6 +33,7 @@ public class MainPageServlet extends HttpServlet {
                 System.out.println(msg.getTitle());
             }
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println("main-page doGet lookAllMessages error");
         }
         rd.forward(request, response);

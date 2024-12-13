@@ -101,6 +101,7 @@ public class SignInServlet extends HttpServlet {
             response.sendRedirect("sign-in");
         } catch (Exception e) {
             // 未知异常
+            e.printStackTrace();
             System.out.println("error in SignInServlet Post");
             response.sendRedirect("sign-in");
         }

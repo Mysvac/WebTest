@@ -53,7 +53,7 @@ hr {
 /* 留言板容器 */
 .board {
     width: 80%;
-    max-height: 40%;
+    max-height: 60%;
     overflow-y: auto;
     margin: 20px auto;
     padding: 15px;
@@ -120,6 +120,16 @@ hr {
 
 .submit button:hover {
     background-color: #0056b3;
+}
+
+#content {
+    min-height: 100px;
+    height: 120px;
+    padding: 8px;
+    font-size: 14px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 pre {
